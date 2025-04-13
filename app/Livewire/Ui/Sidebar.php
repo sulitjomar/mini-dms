@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Sidebar extends Component
 {
-    public $isOpen = true;
+    public $isOpen = false;
     public $activeItem = 'Dashboard';
     public array $items = [];
 
@@ -14,6 +14,7 @@ class Sidebar extends Component
 
     public function mount(array $items = [])
     {
+        \Log::info('Sidebar component mounted.');
         $this->items = $items ?: $this->defaultItems();
     }
 
@@ -33,7 +34,16 @@ class Sidebar extends Component
 
     public function toggle()
     {
+        \Log::info('Toggle method is called.');
+
         $this->isOpen = !$this->isOpen;
+
+        \Log::info('Sidebar toggled. IsOpen: ' . $this->isOpen);
+
+        // Dispatching browser event
+        $this->dispatchBrowserEvent('toggle-sidebar', ['status' => $this->isOpen]);
+
+        \Log::info('Browser event dispatched: toggle-sidebar');
     }
 
     public function setActive($item)

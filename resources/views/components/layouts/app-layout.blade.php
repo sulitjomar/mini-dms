@@ -11,24 +11,22 @@
 <body class="bg-gray-100">
     <div class="flex">
         <livewire:ui.sidebar />
-        <!-- Overlay for mobile -->
-        <div x-show="$wire.isOpen" 
-            x-transition.opacity
-            @click="$wire.toggle()"
-            class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden">
-        </div>
         <div class="flex-1">
             <!-- Header -->
             <header class="bg-white shadow-md p-4 flex items-center justify-between space-x-4">
                 <!-- Left: Hamburger and Title -->
                 <div class="flex items-center space-x-4">
-                    <!-- Hamburger Icon -->
-                    <button wire:click="$emit('toggleSidebar')" class="text-gray-700 hover:text-gray-900 focus:outline-none">
+                    <!-- Hamburger Button -->
+                    <button 
+                        wire:click="$emit('toggleSidebar')" 
+                        class="text-gray-700 hover:text-gray-900 focus:outline-none block md:hidden"
+                    >
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                    <h1 class="text-xl font-semibold text-gray-700">{{ $header ?? 'Dashboard' }}</h1>
+                    <!-- Add this to show the header: {{ $header ?? 'Dashboard' }} -->
+                    <h1 class="text-xl font-semibold text-gray-700"></h1>
                 </div>
 
                 <!-- Right: Search bar and Profile -->
@@ -74,17 +72,23 @@
     @livewireScripts
 
     <script>
-        // Profile dropdown toggle
-        const profileButton = document.querySelector('button[aria-expanded]');
-        const profileDropdown = document.querySelector('#profile-menu');
-
-        if (profileButton && profileDropdown) {
-            profileButton.addEventListener('click', () => {
-                profileDropdown.classList.toggle('hidden');
-                const expanded = profileButton.getAttribute('aria-expanded') === 'true';
-                profileButton.setAttribute('aria-expanded', !expanded);
+        document.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('toggle-sidebar', event => {
+                console.log('Sidebar state: ', event.detail.status);
             });
-        }
+
+            // Profile dropdown toggle
+            const profileButton = document.querySelector('button[aria-expanded]');
+            const profileDropdown = document.querySelector('#profile-menu');
+
+            if (profileButton && profileDropdown) {
+                profileButton.addEventListener('click', () => {
+                    profileDropdown.classList.toggle('hidden');
+                    const expanded = profileButton.getAttribute('aria-expanded') === 'true';
+                    profileButton.setAttribute('aria-expanded', !expanded);
+                });
+            }
+        });
     </script>
 </body>
 </html>
