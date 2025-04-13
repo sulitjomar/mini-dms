@@ -63,7 +63,7 @@
             </header>
 
             <!-- Main Content -->
-            <main class="flex-1 p-6">
+            <main class="flex-1 p-6 mx-2 my-2 bg-white shadow-md rounded-lg">
                 {{ $slot }}
             </main>
         </div>

@@ -12,6 +12,7 @@ use App\Actions\Vehicles\UpdateVehicle;
 class Form extends Component
 {
     public ?Vehicle $vehicle = null;
+    public ?int $editingId = null;
 
     public string $vin = '';
     public string $make = '';
@@ -25,7 +26,13 @@ class Form extends Component
     #[On('open-form')]
     public function open(?int $id = null): void
     {
-        $this->vehicle = $id ? Vehicle::findOrFail($id) : null;
+        $this->editingId = $id; // Ensure $editingId is set here
+
+        if ($id) {
+            $this->vehicle = Vehicle::findOrFail($id); // Get the vehicle if editing
+        } else {
+            $this->vehicle = null; // No vehicle if creating
+        }
 
         $this->fill([
             'vin' => $this->vehicle->vin ?? '',

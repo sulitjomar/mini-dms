@@ -12,6 +12,6 @@
             <option value="sold">Sold</option>
             <option value="reserved">Reserved</option>
         </x-ui.select>
-        <x-ui.button :type="'button'">Save</x-ui.button>
+        <x-ui.button :type="'button'" :label="'Save'">Save</x-ui.button>
     </form>
 </x-modals.simple-with-dismiss-button>

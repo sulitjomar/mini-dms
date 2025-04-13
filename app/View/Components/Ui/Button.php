@@ -13,7 +13,7 @@ class Button extends Component
 
     public function __construct(
         string $type = 'button',
-        string $color = 'blue',
+        string $color = 'bg-blue-600',
         string $size = 'medium',
         string $label = 'Click Me'
     ) {
@@ -25,12 +25,6 @@ class Button extends Component
 
     public function render()
     {
-        \Log::debug([
-            'type' => $this->type,
-            'color' => $this->color,
-            'size' => $this->size,
-            'label' => $this->label
-        ]);
         return view('components.ui.button');
     }
 }
