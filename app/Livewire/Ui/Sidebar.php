@@ -22,7 +22,7 @@ class Sidebar extends Component
     {
         return [
             ['label' => 'Dashboard', 'icon' => 'heroicon-o-home', 'route' => route('dashboard')],
-            ['label' => 'Inventory', 'icon' => 'heroicon-o-truck', 'route' => route('dashboard')],
+            ['label' => 'Inventory', 'icon' => 'heroicon-o-truck', 'route' => route('inventory.index')],
             ['label' => 'Sales', 'icon' => 'heroicon-o-banknotes', 'route' => route('dashboard')],
             ['label' => 'Customers', 'icon' => 'heroicon-o-user-group', 'route' => route('dashboard')],
             ['label' => 'Employees', 'icon' => 'heroicon-o-briefcase', 'route' => route('dashboard')],
