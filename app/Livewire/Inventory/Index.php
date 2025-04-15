@@ -23,14 +23,13 @@ class Index extends Component
 
     public function create(): void
     {
-        $this->editingId = null;
-        $this->dispatch('open-form', ['id' => null]);
+        \Log::info('Dispatching open-form for Add Vehicle');
+        $this->dispatch('open-form', id: null)->to('inventory.form');
     }
 
     public function edit(int $id): void
     {
-        $this->editingId = $id;
-        $this->dispatch('open-form', ['id' => $id]);
+        $this->dispatch('open-form', $id);
     }
     
     public function render()

@@ -33,5 +33,9 @@
     </div>
 
     <!-- Add this line to pass the editingId to the modal -->
-    <livewire:inventory.form :editing-id="$editingId" />
+    <x-modals.simple-with-dismiss-button>
+        <h1>Hello</h1>
+       
+    </x-modals.simple-with-dismiss-button>
+
 </div>

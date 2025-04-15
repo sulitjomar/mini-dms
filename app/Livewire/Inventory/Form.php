@@ -13,6 +13,7 @@ class Form extends Component
 {
     public ?Vehicle $vehicle = null;
     public ?int $editingId = null;
+    public bool $showModal = false;
 
     public string $vin = '';
     public string $make = '';
@@ -26,12 +27,13 @@ class Form extends Component
     #[On('open-form')]
     public function open(?int $id = null): void
     {
-        $this->editingId = $id; // Ensure $editingId is set here
+        \Log::info('Received open-form event with id: ' . $id);
+        $this->editingId = $id;
 
         if ($id) {
-            $this->vehicle = Vehicle::findOrFail($id); // Get the vehicle if editing
+            $this->vehicle = Vehicle::findOrFail($id);
         } else {
-            $this->vehicle = null; // No vehicle if creating
+            $this->vehicle = null;
         }
 
         $this->fill([
@@ -44,6 +46,9 @@ class Form extends Component
             'price' => $this->vehicle->price ?? 0.00,
             'status' => $this->vehicle->status ?? 'available',
         ]);
+
+        $this->showModal = true;
+        \Log::info('Form modal should now be open');
     }
 
     public function save(CreateVehicle $createVehicle, UpdateVehicle $updateVehicle): void
