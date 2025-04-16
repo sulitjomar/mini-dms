@@ -1,5 +1,20 @@
 <div>
-    <x-ui.button :type="'button'" :color="'blue'" :label="'Add Vehicle'" wire:click="create">Add Vehicle</x-ui.button>
+    <x-ui.button
+        :type="'button'"
+        :color="'blue'"
+        :label="'Add Vehicle'"
+        x-data
+        x-on:click="
+            $dispatch('open-modal', {
+                title: 'Add Vehicle',
+                content: @js(view('livewire.inventory.form')->render())
+            })
+        "
+        class="text-indigo-500"
+    >
+        Add Vehicle
+    </x-ui.button>
+
     <!-- Responsive Table Wrapper -->
     <div class="overflow-x-auto mt-4">
         <table class="min-w-full table-auto text-sm sm:text-base">
@@ -32,10 +47,6 @@
         </table>
     </div>
 
-    <!-- Add this line to pass the editingId to the modal -->
-    <x-modals.simple-with-dismiss-button>
-        <h1>Hello</h1>
-       
-    </x-modals.simple-with-dismiss-button>
+    <livewire:modal />
 
 </div>

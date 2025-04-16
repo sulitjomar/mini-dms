@@ -21,10 +21,9 @@ class Index extends Component
         $this->vehicles = Vehicle::latest()->get();
     }
 
-    public function create(): void
+    public function openModal()
     {
-        \Log::info('Dispatching open-form for Add Vehicle');
-        $this->dispatch('open-form', id: null)->to('inventory.form');
+        $this->emitTo('livewire.modal', 'openModal', 'Modal Title', 'This is the content of the modal.');
     }
 
     public function edit(int $id): void

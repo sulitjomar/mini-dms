@@ -9,12 +9,16 @@ use Illuminate\View\Component;
 class Select extends Component
 {
     public $options;
+    public $name;
+    public $label;
     
     /**
      * Create a new component instance.
      */
-    public function __construct($options = [])
+    public function __construct($name, $label, $options = [])
     {
+        $this->name = $name;
+        $this->label = $label;
         $this->options = $options;
     }
 
